@@ -12,7 +12,11 @@ const time = new Date().getHours(),
     yearElement = document.querySelector('[name="year"]'),
     errYear = document.querySelector('.err.year'),
     thirdHeader = document.querySelector('.third .ml11 .letters'),
-    fourthHeader = document.querySelector('.fourth .ml11 .letters');
+    fourthHeader = document.querySelector('.fourth .ml11 .letters'),
+    $heart = document.querySelector("#heart"),
+    $square = $heart.querySelector("#square"),
+    $circle01 = $heart.querySelector("#circle01"),
+    $circle02 = $heart.querySelector("#circle02");
 
 let counter = 0;
 
@@ -342,7 +346,7 @@ button[4].addEventListener('click', function () {
             loop: false
         })
         .add({
-            targets: '.third',
+            targets: '.fourth',
             opacity: [1, 0],
             easing: "easeInOutQuad",
             duration: 500
@@ -352,47 +356,160 @@ button[4].addEventListener('click', function () {
             loop: false
         })
         .add({
-            targets: '.fourth',
+            targets: '.fifth',
             opacity: [0, 1],
             easing: "easeInOutQuad",
             duration: 500,
             delay: 500
         })
 
-
     anime.timeline({
-        loop: false
-    }).add({
-        targets: '.fourth .ml11 .letter',
-        opacity: [0, 1],
-        easing: "easeOutExpo",
-        duration: 600,
-        offset: '-=775',
-        delay: (el, i) => 1600 + (34 * (i + 1))
-    })
+            loop: false
+        })
+        .add({
+            targets: 'body',
+            background: '#222',
+            backgroundColor: '#222',
+            easing: "easeInOutQuad",
+            duration: 500,
+            delay: 500
+        })
 
-    anime.timeline({
-        loop: false
-    }).add({
-        targets: '.fourth p',
-        translateY: ['-40px', 0],
-        opacity: [0, 1],
-        easing: "easeOutExpo",
-        delay: 2100
-    })
-
-    anime.timeline({
-        loop: false
-    }).add({
-        targets: '.fourth .button',
-        translateY: ['40px', 0],
-        opacity: [0, 1],
-        easing: "easeOutExpo",
-        delay: 2100
-    })
 
     setTimeout(() => {
-        third.classList.remove('active');
-        fourth.classList.add('active');
+        fourth.classList.remove('active');
+        fifth.classList.add('active');
     }, 500);
+})
+
+button[5].addEventListener('click', function () {
+
+    const rose = document.querySelector('#rose');
+
+    setTimeout(() => {
+        rose.style.strokeWidth = 2
+        button[5].style.display = 'none'
+    }, 600);
+
+    anime.timeline({
+            loop: false
+        })
+        .add({
+            targets: '.btn_last',
+            easing: 'easeInOutQuad',
+            duration: 500,
+            opacity: [1, 0]
+        });
+
+
+    anime.timeline({
+            loop: false
+        })
+        .add({
+            targets: '#XMLID_226_',
+            strokeDashoffset: [anime.setDashoffset, 0],
+            easing: 'easeInOutQuad',
+            autoplay: false,
+            duration: 4000,
+            delay: 600
+        })
+
+    anime.timeline({
+            loop: false
+        })
+        .add({
+            targets: '#XMLID_226_',
+            easing: 'easeInOutQuad',
+            opacity: [1, 0],
+            duration: 500,
+            delay: 4000
+        })
+
+    anime.timeline({
+            loop: false
+        })
+        .add({
+            targets: '.fl .i',
+            translateX: ['-40', 0],
+            opacity: 1,
+            easing: 'easeInOutQuad',
+            duration: 500,
+            delay: 4200
+        });
+
+    anime.timeline({
+            loop: false
+        })
+        .add({
+            targets: '#heart',
+            opacity: [0, 1],
+            translateY: -10,
+            scale: .9,
+            easing: 'easeInOutQuad',
+            duration: 500,
+            delay: 4500
+        });
+
+
+    const heartTL = new TimelineMax({
+        delay: 4.1
+    })
+
+    heartTL.fromTo($square, 1, {
+            drawSVG: "0% 0%"
+        }, {
+            drawSVG: "0% 100% ",
+            ease: Power0.easeNone
+        }, 0.0)
+        .fromTo($circle01, 1, {
+            drawSVG: "0% 0%"
+        }, {
+            drawSVG: "0% 100% ",
+            ease: Power0.easeNone
+        }, 1.1)
+        .fromTo($circle02, 1, {
+            drawSVG: "0% 0%"
+        }, {
+            drawSVG: "0% 100% ",
+            ease: Power0.easeNone
+        }, 1.1)
+        .to($circle01, 1, {
+            y: -25,
+            ease: Power2.easeOut
+        }, 2.2)
+        .to($circle02, 1, {
+            x: 25,
+            ease: Power2.easeOut
+        }, 2.2)
+        .to($heart, 1, {
+            rotation: -45,
+            ease: Power2.easeOut
+        }, 3.0)
+        .to($square, 0.7, {
+            fill: "#FF3E55",
+            stroke: "#FF3E55",
+            ease: Power2.easeOut
+        }, 4.3)
+        .to($circle01, 0.7, {
+            fill: "#FF3E55",
+            stroke: "#FF3E55",
+            ease: Power2.easeOut
+        }, 4.3)
+        .to($circle02, 0.7, {
+            fill: "#FF3E55",
+            stroke: "#FF3E55",
+            ease: Power2.easeOut
+        }, 4.3);
+
+    anime.timeline({
+            loop: false
+        })
+        .add({
+            targets: '.fl .u',
+            translateX: ['40', 0],
+            opacity: 1,
+            easing: 'easeInOutQuad',
+            duration: 500,
+            delay: 8400
+        });
 })
