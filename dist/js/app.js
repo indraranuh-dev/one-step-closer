@@ -70,7 +70,7 @@ function setInputFilter(textbox, inputFilter) {
 
 setTimeout(() => {
     first.classList.add('active');
-}, 500);
+}, 1000);
 
 timeElement.innerHTML = convertTime(time);
 
